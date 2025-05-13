@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import AccessSphereLogo from '../logos/AccessSphereLogo';
+import Input from '../common/Input';
 
 const Step2 = ({ onNext, onPrevious }) => {
   const [formData, setFormData] = useState({
-    fullName: '',
+    firstName: '',
+    lastName: '',
     workEmail: '',
     password: '',
     confirmPassword: ''
@@ -18,96 +20,95 @@ const Step2 = ({ onNext, onPrevious }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Mock API call
-    console.log('Creating admin account with:', formData);
+    // Here you would typically validate and submit the form data
+    console.log('Form submitted:', formData);
     onNext();
   };
 
   return (
     <div className="flex flex-col items-center w-full">
-      <div className="w-full max-w-3xl bg-white rounded-xl shadow p-4 flex flex-col items-center border border-sphere-grey-light">
+      <div className="w-full max-w-3xl bg-white rounded-xl shadow p-8 flex flex-col items-center border border-sphere-grey-light">
         {/* Logo */}
         <AccessSphereLogo className="mb-4" />
 
         {/* Title and subtitle */}
-        <div className="w-full max-w-md">
-          <h1 className="text-2xl font-bold text-sphere-blue-dark mb-2">Create Your Admin Account</h1>
-          <p className="text-sphere-grey-dark mb-8">This admin will manage AccessSphere settings</p>
-        </div>
+        <h1 className="text-2xl font-bold text-sphere-blue-dark mb-2">Create Admin Account</h1>
+        <p className="text-sphere-grey-dark text-center mb-8">Set up your administrator account to manage Access Sphere</p>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="w-full max-w-lg space-y-6">
-          <div className="space-y-2">
-            <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">Full Name</label>
-            <input
-              type="text"
-              id="fullName"
-              name="fullName"
-              value={formData.fullName}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            />
-          </div>
+          <Input
+            label="First Name"
+            type="text"
+            id="firstName"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
+            required
+          />
+
+          <Input
+            label="Last Name"
+            type="text"
+            id="lastName"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+            required
+          />
+
+          <Input
+            label="Work Email"
+            type="email"
+            id="workEmail"
+            name="workEmail"
+            value={formData.workEmail}
+            onChange={handleChange}
+            required
+          />
 
           <div className="space-y-2">
-            <label htmlFor="workEmail" className="block text-sm font-medium text-gray-700">Work Email</label>
-            <input
-              type="email"
-              id="workEmail"
-              name="workEmail"
-              value={formData.workEmail}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            />
-          </div>
-
-          <div className="space-y-2">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
-            <input
+            <Input
+              label="Password"
               type="password"
               id="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
-            <div className="mt-2 space-y-1 text-sm text-gray-600">
+            <div className="mt-2 space-y-1 text-sm text-sphere-grey-dark">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-gray-900"></div>
+                <div className="w-2 h-2 rounded-full bg-sphere-grey-dark"></div>
                 <span>Minimum 8 characters</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-gray-900"></div>
+                <div className="w-2 h-2 rounded-full bg-sphere-grey-dark"></div>
                 <span>One uppercase letter</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-gray-900"></div>
+                <div className="w-2 h-2 rounded-full bg-sphere-grey-dark"></div>
                 <span>One number</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-gray-900"></div>
+                <div className="w-2 h-2 rounded-full bg-sphere-grey-dark"></div>
                 <span>One special character</span>
               </div>
             </div>
           </div>
 
-          <div className="space-y-2">
-            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">Confirm Password</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
-            />
-          </div>
+          <Input
+            label="Confirm Password"
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            required
+          />
 
-          <div className="flex gap-4 w-full pt-4">
+          {/* Navigation */}
+          <div className="flex gap-4 w-full pt-8">
             <button
               type="button"
               onClick={onPrevious}
@@ -117,7 +118,7 @@ const Step2 = ({ onNext, onPrevious }) => {
             </button>
             <button
               type="submit"
-              className="flex-1 bg-sphere-blue-dark hover:bg-sphere-blue-light active:bg-sphere-blue-light text-white font-semibold py-3 rounded-lg text-base flex items-center justify-center transition-colors duration-150"
+              className="flex-1 bg-sphere-blue-dark text-white font-semibold py-3 rounded-lg hover:bg-sphere-blue-light transition-colors duration-150 flex items-center justify-center"
             >
               Continue
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>

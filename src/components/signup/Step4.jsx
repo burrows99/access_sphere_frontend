@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AccessSphereLogo from '../logos/AccessSphereLogo';
+import Input from '../common/Input';
 
 const Step4 = ({ onNext, onPrevious }) => {
   const [authType, setAuthType] = useState('sso');
@@ -86,36 +87,30 @@ const Step4 = ({ onNext, onPrevious }) => {
                 </div>
 
                 <div className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Organization Domain</label>
-                    <input
-                      type="text"
-                      name="domain"
-                      placeholder="company.com"
-                      value={formData.domain}
-                      onChange={handleChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                  </div>
+                  <Input
+                    label="Organization Domain"
+                    type="text"
+                    name="domain"
+                    placeholder="company.com"
+                    value={formData.domain}
+                    onChange={handleChange}
+                  />
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">SAML Metadata</label>
-                    <div className="flex gap-2">
-                      <input
-                        type="text"
-                        name="metadataUrl"
-                        placeholder="Metadata URL"
-                        value={formData.metadataUrl}
-                        onChange={handleChange}
-                        className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                      <button
-                        type="button"
-                        className="px-4 py-2 bg-sphere-grey-light text-sphere-grey-dark font-medium rounded-lg hover:bg-sphere-grey-light transition-colors"
-                      >
-                        Upload XML
-                      </button>
-                    </div>
+                  <div className="space-y-2">
+                    <Input
+                      label="SAML Metadata"
+                      type="text"
+                      name="metadataUrl"
+                      placeholder="Metadata URL"
+                      value={formData.metadataUrl}
+                      onChange={handleChange}
+                    />
+                    <button
+                      type="button"
+                      className="px-4 py-2 bg-sphere-grey-light text-sphere-grey-dark font-medium rounded-lg hover:bg-sphere-grey-light transition-colors"
+                    >
+                      Upload XML
+                    </button>
                   </div>
 
                   <div className="space-y-2">
