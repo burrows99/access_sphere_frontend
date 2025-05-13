@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AccessSphereLogo from '../logos/AccessSphereLogo';
 
 const Step3 = ({ onNext, onPrevious }) => {
   const [verificationCode, setVerificationCode] = useState(['', '', '', '', '', '']);
@@ -29,18 +30,16 @@ const Step3 = ({ onNext, onPrevious }) => {
 
   return (
     <div className="flex flex-col items-center w-full">
-      <div className="w-full max-w-3xl bg-white rounded-xl shadow p-4 flex flex-col items-center border border-gray-200">
+      <div className="w-full max-w-3xl bg-white rounded-xl shadow p-4 flex flex-col items-center border border-sphere-grey-light">
         {/* Logo */}
-        <div className="mb-4">
-          <img src="/logo.svg" alt="AccessSphere" className="h-8" />
-        </div>
+        <AccessSphereLogo className="mb-4" />
 
         {/* Title and subtitle */}
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">Enable Multi-Factor Authentication</h1>
+        <h1 className="text-2xl font-bold text-sphere-blue-dark mb-2">Enable Multi-Factor Authentication</h1>
         <p className="text-gray-500 text-center mb-8">Secure your account with an additional layer of protection</p>
 
         {/* QR Code */}
-        <div className="bg-gray-50 p-8 rounded-lg mb-6">
+        <div className="bg-sphere-grey-light p-8 rounded-lg mb-6">
           <img 
             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=" 
             alt="MFA QR Code"
@@ -48,12 +47,12 @@ const Step3 = ({ onNext, onPrevious }) => {
           />
         </div>
 
-        <p className="text-gray-600 mb-4">Scan with Google Authenticator or Authy</p>
+        <p className="text-sphere-grey-dark mb-4">Scan with Google Authenticator or Authy</p>
 
         {/* Manual Code Toggle */}
         <button 
           onClick={() => setShowManualCode(!showManualCode)}
-          className="text-blue-600 hover:text-blue-700 mb-6 flex items-center"
+          className="text-sphere-blue-dark hover:text-sphere-blue-light mb-6 flex items-center"
         >
           <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -63,15 +62,15 @@ const Step3 = ({ onNext, onPrevious }) => {
         </button>
 
         {showManualCode && (
-          <div className="bg-gray-50 p-4 rounded-lg mb-6 w-full max-w-md text-center">
+          <div className="bg-sphere-grey-light p-4 rounded-lg mb-6 w-full max-w-md text-center">
             <code className="text-lg font-mono">ABCD-EFGH-IJKL-MNOP</code>
           </div>
         )}
 
         {/* Verification Code Input */}
         <form onSubmit={handleSubmit} className="w-full max-w-md">
-          <label className="block text-sm font-medium text-gray-700 mb-3">Enter 6-digit Verification Code</label>
-          <div className="flex gap-2 mb-6 justify-center">
+          <label className="block text-sm font-medium text-sphere-grey-dark mb-3">Enter 6-digit Verification Code</label>
+          <div className="flex gap-2 mb-6">
             {verificationCode.map((digit, index) => (
               <input
                 key={index}
@@ -80,22 +79,23 @@ const Step3 = ({ onNext, onPrevious }) => {
                 maxLength="1"
                 value={digit}
                 onChange={(e) => handleDigitChange(index, e.target.value)}
-                className="w-12 h-12 text-center text-lg font-medium border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                style={{ outline: 'none' }}
+                className="w-12 h-12 text-center text-xl font-medium bg-white border-2 border-sphere-grey-light rounded-lg ring-0 focus:ring-0 focus:outline-none focus:border-2 focus:border-sphere-grey-dark"
               />
             ))}
           </div>
 
           {/* Backup Codes */}
-          <div className="bg-gray-50 p-4 rounded-lg mb-6">
+          <div className="bg-sphere-grey-light p-4 rounded-lg mb-6">
             <div className="flex justify-between items-center">
               <div>
-                <h3 className="font-medium text-gray-900">Backup Codes</h3>
-                <p className="text-sm text-gray-500">Save these codes in case you lose access to your authenticator</p>
+                <h3 className="font-medium text-sphere-blue-dark">Backup Codes</h3>
+                <p className="text-sm text-sphere-grey-dark">Save these codes in case you lose access to your authenticator</p>
               </div>
               <button
                 type="button"
                 onClick={handleDownloadCodes}
-                className="flex items-center text-gray-700 hover:text-gray-900"
+                className="flex items-center text-sphere-grey-dark hover:text-sphere-blue-dark"
               >
                 <svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -106,18 +106,17 @@ const Step3 = ({ onNext, onPrevious }) => {
           </div>
 
           {/* Navigation */}
-          <div className="flex justify-between pt-4">
+          <div className="flex gap-4 w-full pt-4">
             <button
               type="button"
               onClick={onPrevious}
-              className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900"
+              className="flex-1 px-4 py-3 bg-sphere-grey-light text-sphere-grey-dark font-semibold rounded-lg hover:bg-sphere-grey-light transition-colors duration-150"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
               Back
             </button>
             <button
               type="submit"
-              className="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors flex items-center"
+              className="flex-1 bg-sphere-blue-dark hover:bg-sphere-blue-light active:bg-sphere-blue-light text-white font-semibold py-3 rounded-lg text-base flex items-center justify-center transition-colors duration-150"
             >
               Verify & Continue
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>

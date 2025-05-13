@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
@@ -7,7 +7,14 @@ import Step5 from './Step5';
 import SetupComplete from './SetupComplete';
 
 const SignUpFlow = () => {
+  const containerRef = useRef(null);
   const [currentStep, setCurrentStep] = useState(1);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [currentStep]);
   const [isComplete, setIsComplete] = useState(false);
 
   const steps = [
@@ -56,32 +63,34 @@ const SignUpFlow = () => {
   }
 
   return (
-    <div className="h-screen bg-gray-50 flex flex-col overflow-hidden">
+    <div ref={containerRef} className="min-h-screen bg-sphere-grey-light flex flex-col overflow-y-auto">
       {/* Progress Bar */}
       <div className="max-w-3xl mx-auto px-2 sm:px-6 lg:px-8 pt-4 pb-6 flex-none">
-      <div className="relative flex justify-between">
+      <div className="relative flex justify-between h-10">
           {/* Progress Lines */}
-          <div className="absolute top-4 left-0 right-0 flex justify-center">
-            <div className="w-full flex justify-between px-2 sm:px-8 lg:px-16">
-              {steps.slice(0, -1).map((_, index) => (
-                <div
-                  key={index}
-                  className={`h-[2px] w-full ${currentStep > index + 1 ? 'bg-blue-900' : 'bg-gray-200'}`}
-                />
-              ))}
-            </div>
+          <div className="absolute inset-0 flex items-center">
+                <div className="w-full flex items-center px-12" aria-hidden="true">
+                  <div className="h-0.5 w-full bg-sphere-grey-light">
+                    <div
+                      className="h-0.5 bg-sphere-blue-dark transition-all duration-500"
+                      style={{ width: `${((currentStep - 1) / (steps.length - 1)) * 100}%` }}
+                    />
+                  </div>
+                </div>
           </div>
 
           {/* Steps */}
-          {steps.map((step) => (
+          {steps.map((step, index) => (
             <div key={step.id} className="flex flex-col items-center relative w-16 sm:w-28 lg:w-36">
-              <div
-                className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-sm sm:text-base font-medium z-10 ${currentStep >= step.id ? 'bg-blue-900 border-blue-900 text-white' : 'bg-white border-2 border-gray-200 text-gray-600'}`}
-              >
-                {step.id}
+              <div className="bg-sphere-grey-light p-1 relative z-10">
+                <div
+                      className={`w-8 h-8 flex items-center justify-center rounded-full border-2 text-sm font-medium ${index + 1 < currentStep ? 'border-sphere-blue-dark bg-sphere-blue-dark text-white' : index + 1 === currentStep ? 'border-sphere-blue-dark text-sphere-blue-dark' : 'border-sphere-grey-light text-sphere-grey-dark bg-white'}`}
+                >
+                  {step.id}
+                </div>
               </div>
               <div
-                className={`text-[8px] sm:text-xs lg:text-sm mt-1 sm:mt-2 text-center w-full leading-tight ${currentStep >= step.id ? 'text-blue-900 font-medium' : 'text-gray-500'}`}
+                className={`text-[8px] sm:text-xs lg:text-sm mt-1 sm:mt-2 text-center w-full leading-tight ${currentStep >= step.id ? 'text-sphere-blue-dark font-medium' : 'text-sphere-grey-dark'}`}
               >
                 {step.label}
               </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AccessSphereLogo from '../logos/AccessSphereLogo';
 
 const Step4 = ({ onNext, onPrevious }) => {
   const [authType, setAuthType] = useState('sso');
@@ -32,15 +33,13 @@ const Step4 = ({ onNext, onPrevious }) => {
 
   return (
     <div className="flex flex-col items-center w-full">
-      <div className="w-full max-w-3xl bg-white rounded-xl shadow p-4 flex flex-col items-center border border-gray-200">
+      <div className="w-full max-w-3xl bg-white rounded-xl shadow p-4 flex flex-col items-center border border-sphere-grey-light">
         {/* Logo */}
-        <div className="mb-4">
-          <img src="/logo.svg" alt="AccessSphere" className="h-8" />
-        </div>
+        <AccessSphereLogo className="mb-4" />
 
         {/* Title and subtitle */}
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">How should your team sign in?</h1>
-        <p className="text-gray-500 text-center mb-8">Configure how users will authenticate with AccessSphere</p>
+        <h1 className="text-2xl font-bold text-sphere-blue-dark mb-2">How should your team sign in?</h1>
+        <p className="text-sphere-grey-dark mb-8">Configure how users will authenticate with AccessSphere</p>
 
         <form onSubmit={handleSubmit} className="w-full max-w-lg space-y-6">
           {/* SSO Option */}
@@ -58,7 +57,7 @@ const Step4 = ({ onNext, onPrevious }) => {
             </label>
 
             {authType === 'sso' && (
-              <div className="ml-6 space-y-4">
+              <div className="space-y-4">
                 <div className="flex gap-4 mb-4">
                   <button
                     type="button"
@@ -112,7 +111,7 @@ const Step4 = ({ onNext, onPrevious }) => {
                       />
                       <button
                         type="button"
-                        className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
+                        className="px-4 py-2 bg-sphere-grey-light text-sphere-grey-dark font-medium rounded-lg hover:bg-sphere-grey-light transition-colors"
                       >
                         Upload XML
                       </button>
@@ -159,18 +158,17 @@ const Step4 = ({ onNext, onPrevious }) => {
           </div>
 
           {/* Navigation */}
-          <div className="flex justify-between pt-4">
+          <div className="flex gap-4 w-full pt-4">
             <button
               type="button"
               onClick={onPrevious}
-              className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900"
+              className="flex-1 px-4 py-3 bg-sphere-grey-light text-sphere-grey-dark font-semibold rounded-lg hover:bg-sphere-grey-light transition-colors duration-150"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
               Back
             </button>
             <button
               type="submit"
-              className="px-6 py-2 bg-blue-900 text-white font-medium rounded-lg hover:bg-blue-950 transition-colors flex items-center"
+              className="flex-1 bg-sphere-blue-dark hover:bg-sphere-blue-light active:bg-sphere-blue-light text-white font-semibold py-3 rounded-lg text-base flex items-center justify-center transition-colors duration-150"
             >
               Continue
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>

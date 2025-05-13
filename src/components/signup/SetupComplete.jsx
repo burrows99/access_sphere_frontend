@@ -1,4 +1,5 @@
 import React from 'react';
+import AccessSphereLogo from '../logos/AccessSphereLogo';
 
 const SetupComplete = () => {
   const handleLaunchDashboard = () => {
@@ -10,9 +11,7 @@ const SetupComplete = () => {
     <div className="flex flex-col items-center w-full">
       <div className="w-full max-w-3xl bg-white rounded-xl shadow p-4 flex flex-col items-center border border-gray-200">
         {/* Logo */}
-        <div className="mb-4">
-          <img src="/logo.svg" alt="AccessSphere" className="h-8" />
-        </div>
+        <AccessSphereLogo className="mb-4" />
 
         {/* Success Icon */}
         <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">

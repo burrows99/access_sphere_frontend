@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AccessSphereLogo from '../logos/AccessSphereLogo';
 
 const Step2 = ({ onNext, onPrevious }) => {
   const [formData, setFormData] = useState({
@@ -24,15 +25,15 @@ const Step2 = ({ onNext, onPrevious }) => {
 
   return (
     <div className="flex flex-col items-center w-full">
-      <div className="w-full max-w-3xl bg-white rounded-xl shadow p-4 flex flex-col items-center border border-gray-200">
+      <div className="w-full max-w-3xl bg-white rounded-xl shadow p-4 flex flex-col items-center border border-sphere-grey-light">
         {/* Logo */}
-        <div className="mb-4">
-          <img src="/logo.svg" alt="AccessSphere" className="h-8" />
-        </div>
+        <AccessSphereLogo className="mb-4" />
 
         {/* Title and subtitle */}
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">Create Your Admin Account</h1>
-        <p className="text-gray-500 text-center mb-8">This admin will manage AccessSphere settings</p>
+        <div className="w-full max-w-md">
+          <h1 className="text-2xl font-bold text-sphere-blue-dark mb-2">Create Your Admin Account</h1>
+          <p className="text-sphere-grey-dark mb-8">This admin will manage AccessSphere settings</p>
+        </div>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="w-full max-w-lg space-y-6">
@@ -106,18 +107,17 @@ const Step2 = ({ onNext, onPrevious }) => {
             />
           </div>
 
-          <div className="flex justify-between pt-4">
+          <div className="flex gap-4 w-full pt-4">
             <button
               type="button"
               onClick={onPrevious}
-              className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900"
+              className="flex-1 px-4 py-3 bg-sphere-grey-light text-sphere-grey-dark font-semibold rounded-lg hover:bg-sphere-grey-light transition-colors duration-150"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
               Back
             </button>
             <button
               type="submit"
-              className="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors flex items-center"
+              className="flex-1 bg-sphere-blue-dark hover:bg-sphere-blue-light active:bg-sphere-blue-light text-white font-semibold py-3 rounded-lg text-base flex items-center justify-center transition-colors duration-150"
             >
               Continue
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
